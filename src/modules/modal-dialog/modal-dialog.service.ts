@@ -5,6 +5,7 @@ export default "modalDialogService";
 
 export class ModalDialogService {
     modalDialogCollection: ModalDialog[];
+    currentModalDialog: ModalDialog;
 
     static $inject = [ActionServiceName]
 
@@ -25,14 +26,17 @@ export class ModalDialogService {
 
     show = (modalDialogId: string) => {
         this.modalDialogCollection.map((modalDialog) => {
-            if (modalDialog.id == modalDialogId) modalDialog.show();
+            if (modalDialog.id == modalDialogId) {
+                this.currentModalDialog = modalDialog;
+                this.currentModalDialog.show();
+            } 
         })
     }
 
-    hide = (modalDialogId: string) => {
-        this.modalDialogCollection.map((modalDialog) => {
-            if (modalDialog.id == modalDialogId) modalDialog.hide();
-        })
-        this.actionService.remove(modalDialogId);
+    hide = () => {
+        this.currentModalDialog.hide();
+        this.currentModalDialog = null;
+
+        this.actionService.clear();
     }
 }

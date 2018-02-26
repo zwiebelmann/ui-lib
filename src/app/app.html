@@ -1,6 +1,12 @@
-<button ng-click="$ctrl.clicked()">Open Dialog</button>
+<button ng-click="$ctrl.clicked('modal1')">Open Dialog</button>
 <modal-dialog 
     id="modal1" 
     window-title="Edit Ticket '392834'">
-    <detail dialog-id="modal1"></detail>
+    <detail></detail>
+</modal-dialog>
+<button ng-click="$ctrl.clicked('modal2')">Open Dialog 2</button>
+<modal-dialog 
+    id="modal2" 
+    window-title="Edit Ticket '98735'">
+    <detail></detail>
 </modal-dialog>

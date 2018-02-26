@@ -35,13 +35,14 @@ class ModalDialogController implements ng.IController, ModalDialog  {
         if(!this.preventCloseOnBorderClick) {
             const element = <HTMLElement>$event.target;
             if(element.classList.contains('modal')) {
-                this.hide();
+                this.modalDialogService.hide();
             }
             $event.stopPropagation();
         }
     }
 
     hide = () => {
+        console.log('hide')
         this.showDialog = false;
     }
 }

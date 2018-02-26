@@ -16,8 +16,8 @@ class AppController implements ng.IController {
     $onInit = () => {
     }
 
-    clicked = () => {
-        this.modalService.show("modal1");
+    clicked = (id: string) => {
+        this.modalService.show(id);
     }
 }
 

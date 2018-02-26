@@ -13,6 +13,19 @@ modal-dialog {
         
         /* z-index must be below .modal and above everything else  */
         z-index: 900;
+        .loading {
+            //display:none;
+
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+
+            background-color: #fff;
+            opacity: 0.75;
+            z-index: 1100;
+        }
 
         .modal {
             /* modal container fixed across whole screen */
@@ -31,10 +44,13 @@ modal-dialog {
             .body {
                 background: #fff;
                 border-radius: 5px;
+                border-color: darkgray;
+                border-style: solid;
+                border-width: 1px;
 
                 /* margin exposes part of the modal background */
                 margin: 40px;
-                height: calc(100% - 80px);
+                height: calc(100% - 84px);
 
                 .container {
                     display: flex;
@@ -50,28 +66,33 @@ modal-dialog {
                         flex-direction: column;
                     }
 
-                    .header {
+                    header {
                         padding: 3px 3px 5px 10px;
                         background-color: lightgray;
+                        color: #333;
 
                         border-bottom-width: 1px;
-                        border-bottom-color: lightgray;
+                        border-bottom-color: darkgray;
                         border-bottom-style: solid;
 
                         border-top-left-radius: 5px;
                         border-top-right-radius: 5px;
                     }
     
-                    .content {
+                    content {
                         flex: 1;
                         padding: 10px;
                         overflow: auto;
                     }
     
-                    .footer {
+                    footer {
+                        border-top-width: 1px;
+                        border-top-color: darkgray;
+                        border-top-style: solid;
+
                         border-bottom-left-radius: 5px;
                         border-bottom-right-radius: 5px;
-                        padding: 15px;
+                        padding: 10px;
                         background-color: lightgray;
 
                         .button-bar {

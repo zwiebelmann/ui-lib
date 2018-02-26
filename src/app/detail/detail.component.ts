@@ -6,11 +6,10 @@ import ActionServiceName, { ActionService } from '../../modules/modal-dialog/foo
 export default 'detail'
 
 class DetailController implements ng.IController {
-    dialogId: string;
 
-    static $inject = [ActionServiceName]
+    static $inject = ['$http', ActionServiceName]
     
-    constructor(public actionService: ActionService) {}
+    constructor(public $http: ng.IHttpService, public actionService: ActionService) {}
 
     $onInit = () => {
         this.setActions();
@@ -18,18 +17,22 @@ class DetailController implements ng.IController {
 
     setActions = () => {
         this.actionService.add(
-            new Action(this.dialogId, "Approve", () => {console.log('ist approved')})
+            new Action("Approve", () => { return this.$http.get("https://crossorigin.me/http://www.github.com").then((response) => {
+                console.log('und jetzt aus dem detail.component.ts')
+                console.log(response)
+                return response
+            } )})
         )
         this.actionService.add(
-            new Action(this.dialogId, "Save", () => {console.log('läuft.')})
+            new Action("Save", () => { return this.$http.get("https://crossorigin.me/http://www.google.com").then((res) => {
+                console.log(res)
+                return res;
+            }) }, false)
         )
     }
 }
 
 export const DetailComponent = {
     template: require('./detail.html'),
-    controller: DetailController,
-    bindings: {
-        dialogId: '@'
-    }
+    controller: DetailController
 } as ng.IComponentOptions

@@ -5,40 +5,23 @@ import ActionServiceName, { ActionService } from './footer.service'
 
 export default 'footer';
 
-interface FooterBindings {
-    actions: Action[];
-    dialogId: string;
-}
+class FooterController implements ng.IController {
+    actions: Action<{}>[];
+    cancelAction: Action<{}>;
 
-class FooterController implements ng.IController, FooterBindings {
-    actions: Action[];
-    dialogId: string;
-    cancelAction: Action;
+    static $inject = ['$q', ModalDialogServiceName, ActionServiceName]
 
-    static $inject = [ModalDialogServiceName, ActionServiceName]
-
-    constructor(public modalService: ModalDialogService, public actionService: ActionService) {
-        this.cancelAction = new Action(this.dialogId, "Cancel", this.hide);
+    constructor(public $q: ng.IQService, public modalService: ModalDialogService, public actionService: ActionService) {
+        this.cancelAction = new Action("Cancel", () => { return $q(this.modalService.hide) });
     }
 
     $onInit = () => {
-        this.actions = this.actionService.getBy(this.dialogId);
-    }
-
-    hide = () => {
-        this.modalService.hide(this.dialogId);
-    }
-
-    close = () => {
-        this.hide()
+        this.actions = this.actionService.getAll();
     }
 }
 
 export const FooterComponent = {
     controller: FooterController,
-    template: require('./footer.html'),
-    bindings: {
-        dialogId: '<'
-    }
+    template: require('./footer.html')
 } as ng.IComponentOptions
 

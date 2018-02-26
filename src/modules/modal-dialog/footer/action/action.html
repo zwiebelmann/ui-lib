@@ -3,3 +3,6 @@
     ng-disabled="$ctrl.action.disabled">
     {{$ctrl.action.name}}
 </button>
+<div class="loading fade" ng-if="$ctrl.loading">
+    <img ng-src="{{$ctrl.loadingImage}}" style="margin: auto; display: block;" />
+</div>

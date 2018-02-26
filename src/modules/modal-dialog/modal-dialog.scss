@@ -1,0 +1,109 @@
+modal-dialog {
+    .background {
+        /* modal background fixed across whole screen */
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+
+        /* semi-transparent black  */
+        background-color: #000;
+        opacity: 0.75;
+        
+        /* z-index must be below .modal and above everything else  */
+        z-index: 900;
+
+        .modal {
+            /* modal container fixed across whole screen */
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+
+            /* z-index must be higher than .modal-background */
+            z-index: 1000;
+            
+            /* enables scrolling for tall modals */
+            overflow: auto;
+    
+            .body {
+                background: #fff;
+                border-radius: 5px;
+
+                /* margin exposes part of the modal background */
+                margin: 40px;
+                height: calc(100% - 80px);
+
+                .container {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+
+                    width: 100%;
+                    height: 100%;
+
+                    ng-transclude {
+                        flex: 1;
+                        display: flex;
+                        flex-direction: column;
+                    }
+
+                    .header {
+                        padding: 3px 3px 5px 10px;
+                        background-color: lightgray;
+
+                        border-bottom-width: 1px;
+                        border-bottom-color: lightgray;
+                        border-bottom-style: solid;
+
+                        border-top-left-radius: 5px;
+                        border-top-right-radius: 5px;
+                    }
+    
+                    .content {
+                        flex: 1;
+                        padding: 10px;
+                        overflow: auto;
+                    }
+    
+                    .footer {
+                        border-bottom-left-radius: 5px;
+                        border-bottom-right-radius: 5px;
+                        padding: 15px;
+                        background-color: lightgray;
+
+                        .button-bar {
+                            display: flex;
+                            justify-content: flex-end;
+
+                            button {
+                                margin-left: 10px;
+                            }
+                        }
+                    }    
+                }
+            }
+        }
+    }
+}
+
+.fade.ng-enter {
+    transition:0.25s linear all;
+    opacity:0;
+  }
+  
+/* The finishing CSS styles for the enter animation */
+.fade.ng-enter.ng-enter-active {
+    opacity:0.75;
+}
+
+/* now the element will fade out before it is removed from the DOM */
+.fade.ng-leave {
+    transition:0.25s linear all;
+    opacity:0.75;
+  }
+  .fade.ng-leave.ng-leave-active {
+    opacity:0;
+  }

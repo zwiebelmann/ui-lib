@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>{{htmlWebpackPlugin.options.title}}</title>
+    <link rel="stylesheet" href="app.min.css">
+  </head>
+  <body>
+        <div ng-app="{{htmlWebpackPlugin.options.prefix}}App" class="{{htmlWebpackPlugin.options.prefix}}" ng-strict-di>
+            <{{htmlWebpackPlugin.options.prefix}}-app></{{htmlWebpackPlugin.options.prefix}}-app>
+        </div>
+        {{#each htmlWebpackPlugin.files.chunks}}
+            <script type="text/javascript" src="{{entry}}"></script>
+        {{/each}}
+  </body>
+</html>

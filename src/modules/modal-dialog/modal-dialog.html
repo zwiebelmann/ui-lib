@@ -1,0 +1,14 @@
+<div class="background fade" ng-if="$ctrl.showDialog" ng-click="$ctrl.borderClick($event)">
+    <div class="modal">
+        <div class="body">
+            <div class="container">
+                <header window-title="$ctrl.windowTitle"></header>
+                <content>
+                        <ng-transclude></ng-transclude>
+                </content>
+                
+                <footer dialog-id="$ctrl.id"></footer>
+            </div>
+        </div>
+    </div>
+</div>
